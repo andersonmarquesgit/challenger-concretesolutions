@@ -1,6 +1,7 @@
 package br.com.cs.rest.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -8,6 +9,7 @@ import org.springframework.validation.Validator;
 import br.com.cs.rest.model.User;
 import br.com.cs.rest.service.UserService;
 
+@Component
 public class UserValidator implements Validator {
 
 	@Autowired
@@ -24,8 +26,6 @@ public class UserValidator implements Validator {
 
 		User u = (User) target;
         
-        //perform additional checks
-        //if name already exists or ?
 		if(userService.isEmailExist(u.getEmail())){
 			err.rejectValue("email","email.exist", "E-mail já existente");
 		}

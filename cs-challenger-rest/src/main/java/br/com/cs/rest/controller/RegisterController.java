@@ -27,9 +27,12 @@ public class RegisterController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired 
+	private UserValidator userValidator;
+	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
-	    binder.setValidator(new UserValidator());
+	    binder.setValidator(userValidator);
 	}
 	
 	@RequestMapping(value = "/cadastro", 
