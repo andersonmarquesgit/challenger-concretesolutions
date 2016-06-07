@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cs.rest.model.User;
@@ -34,7 +36,8 @@ public class LoginController {
 	@RequestMapping(value = "/login", 
 			method = RequestMethod.POST, 
 			produces = "application/json")
-	public ResponseEntity<User> login(@Valid @RequestBody LoginTO loginTO) {
-		return new ResponseEntity<User>(loginService.login(loginTO), HttpStatus.OK) ;
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody User login(@Valid @RequestBody LoginTO loginTO) {
+		return loginService.login(loginTO);
 	}
 }

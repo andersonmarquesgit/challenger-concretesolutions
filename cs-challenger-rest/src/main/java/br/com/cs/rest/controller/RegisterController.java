@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cs.rest.model.Phone;
@@ -38,8 +40,9 @@ public class RegisterController {
 	@RequestMapping(value = "/cadastro", 
 			method = RequestMethod.POST, 
 			produces = "application/json")
-	public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
-		return new ResponseEntity<User>(userService.save(user), HttpStatus.OK) ;
+	@ResponseStatus(HttpStatus.CREATED)
+	public @ResponseBody User saveUser(@Valid @RequestBody User user) {
+		return userService.save(user);
 	}
 	
 	@RequestMapping(value = "/",

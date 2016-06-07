@@ -1,10 +1,13 @@
 package br.com.cs.rest.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+import br.com.cs.rest.exception.LoginException;
 import br.com.cs.rest.model.User;
 import br.com.cs.rest.model.to.LoginTO;
 import br.com.cs.rest.service.LoginService;
@@ -21,14 +24,15 @@ public class LoginValidator implements Validator {
 	}
 
 	@Override
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	public void validate(Object target, Errors err) {
 		LoginTO l = (LoginTO) target;
         User user = loginService.login(l);
 		
 		if(user == null){
-			err.rejectValue("email","user.email", "Usuário e/ou senha inválidos");
+			throw new LoginException("Usuário e/ou senha inválidos");
 		}else if(!user.getPassword().equals(l.getPassword())) {
-			err.rejectValue("password","user.password", "Usuário e/ou senha inválidos");
+			throw new LoginException("Usuário e/ou senha inválidos");
 		}
 		
 	}
