@@ -39,7 +39,7 @@ public class RegisterController {
 			method = RequestMethod.POST, 
 			produces = "application/json")
 	public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
-		return new ResponseEntity<User>( userService.save(user), HttpStatus.OK) ;
+		return new ResponseEntity<User>(userService.save(user), HttpStatus.OK) ;
 	}
 	
 	@RequestMapping(value = "/",
