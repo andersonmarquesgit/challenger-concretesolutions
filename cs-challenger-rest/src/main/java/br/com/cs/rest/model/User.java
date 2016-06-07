@@ -17,26 +17,23 @@ public class User {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonIgnore
     private Integer id;
 	
 	private String name;
+	
 	private String email;
+	
 	private String password;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Phone> phones;
 	
-	@JsonIgnore
 	private Date created;
 	
-	@JsonIgnore
 	private Date modified;
 	
-	@JsonIgnore
 	private Date lastLogin;
 	
-	@JsonIgnore
 	private String token;
 	
 	public Integer getId() {
