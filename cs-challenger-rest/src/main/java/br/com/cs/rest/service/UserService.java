@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import br.com.cs.rest.model.User;
 import br.com.cs.rest.repository.UserRepository;
 
-
 @Service
 public class UserService {
 
@@ -21,6 +20,10 @@ public class UserService {
 		user.setLastLogin(new Date());
 		
 		return userRepository.save(user);
+	}
+
+	public boolean isEmailExist(String email) {
+		return userRepository.findByEmail(email) == null ? false : true;
 	}
 
 }
