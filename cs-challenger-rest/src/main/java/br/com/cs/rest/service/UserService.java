@@ -32,5 +32,9 @@ public class UserService {
 		UUID token = UUID.randomUUID();
 		return token.toString();
 	}
+	
+	public String generateTokenJWT() {
+		return "";
+	}
 
 }
