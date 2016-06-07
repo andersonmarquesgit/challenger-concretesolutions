@@ -10,11 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonIgnore
     private Integer id;
 	
 	private String name;
@@ -24,9 +27,16 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Phone> phones;
 	
+	@JsonIgnore
 	private Date created;
+	
+	@JsonIgnore
 	private Date modified;
+	
+	@JsonIgnore
 	private Date lastLogin;
+	
+	@JsonIgnore
 	private String token;
 	
 	public Integer getId() {

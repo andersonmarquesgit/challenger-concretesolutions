@@ -6,34 +6,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Phone {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonIgnore
     private Integer id;
 	
 	@ManyToOne
+	@JsonIgnore
 	private User user;
 	
-	private short ddd;
-	private short number;
-	
-	public Phone(String phoneNumber) {
-        // converte a string recebida para os dados internos
-    }
-	
-    public Phone(long phoneNumber) {
-        // converte o número recebido para os dados internos
-    }
-    
-    public String getAsString() {
-        return "" + " (" + ddd + ") " + number;
-    }
-    
-    public Long getAsLong() {
-		return new Long(ddd+number);
-    }
+	private Integer number;
+	private Integer ddd;
     
     public Integer getId() {
 		return id;
@@ -50,19 +38,21 @@ public class Phone {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public short getDdd() {
-		return ddd;
-	}
-	
-	public void setDdd(short ddd) {
-		this.ddd = ddd;
-	}
-	
-	public short getNumber() {
+
+	public Integer getNumber() {
 		return number;
 	}
-	
-	public void setNumber(short number) {
+
+	public void setNumber(Integer number) {
 		this.number = number;
 	}
+	
+	public Integer getDdd() {
+		return ddd;
+	}
+
+	public void setDdd(Integer ddd) {
+		this.ddd = ddd;
+	}
+
 }
