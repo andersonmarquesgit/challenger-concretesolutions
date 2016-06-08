@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.cs.rest.model.Phone;
 import br.com.cs.rest.model.User;
 import br.com.cs.rest.repository.UserRepository;
 
@@ -27,6 +28,11 @@ public class UserService {
 		user.setLastLogin(new Date());
 		user.setToken(tokenService.encodeToken(user));
 		user.setPassword(encryptPassword(user.getPassword()));
+		
+		List<Phone> phones = user.getPhones();
+		for (Phone phone : phones) {
+			phone.setUser(user);
+		}
 		
 		return userRepository.save(user);
 	}

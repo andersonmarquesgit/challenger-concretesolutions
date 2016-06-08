@@ -39,14 +39,13 @@ public class LoginValidator implements Validator {
 		LoginTO l = (LoginTO) target;
         User user = loginService.login(l);
 		
-        String token = tokenService.encodeToken(user);
-        
 		if(user == null) {
 			throw new LoginException("Usuário e/ou senha inválidos");
 		}else if(!user.getPassword().equals(userService.encryptPassword(l.getPassword()))) {
 			throw new LoginException("Usuário e/ou senha inválidos");
 		}
 		
+		String token = tokenService.encodeToken(user);
 		if(!user.getToken().equals(token)) {
 			throw new LoginException("Não autorizado");
 		}else if(user.getLastLogin().after(new Date(new Date().getTime() + 30 * 60 * 1000))) {
