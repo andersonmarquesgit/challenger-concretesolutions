@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,9 @@ public class UserService {
 		}
 		
 		return password;
+	}
+
+	public List<User> findAll() {
+		return (List<User>) userRepository.findAll();
 	}
 }

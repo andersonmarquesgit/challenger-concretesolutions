@@ -48,26 +48,7 @@ public class RegisterController {
 	@RequestMapping(value = "/",
 			method = RequestMethod.GET, 
 	        produces = "application/json")
-	public ResponseEntity<User> get() {
-
-		User user = new User();
-		user.setName("Anderson");
-		user.setEmail("anderson@teste");
-
-		Phone p1 = new Phone();
-		p1.setDdd(21);
-		p1.setNumber(987654321);
-		
-		Phone p2 = new Phone();
-		p2.setDdd(11);
-		p2.setNumber(999998888);
-		
-		List<Phone> phones = new ArrayList<Phone>();
-		phones.add(p1);
-		phones.add(p2);
-		
-		user.setPhones(phones);
-		
-	    return new ResponseEntity<User>(user, HttpStatus.OK);
+	public @ResponseBody List<User> get() {
+		return userService.findAll();
 	}
 }
