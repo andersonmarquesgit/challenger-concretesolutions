@@ -1,5 +1,8 @@
 package br.com.cs.rest.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.UUID;
 
@@ -20,6 +23,7 @@ public class UserService {
 		user.setModified(new Date());
 		user.setLastLogin(new Date());
 		user.setToken(generateTokenUUID());
+		user.setPassword(encryptPassword(user.getPassword()));
 		
 		return userRepository.save(user);
 	}
@@ -36,5 +40,26 @@ public class UserService {
 	public String generateTokenJWT() {
 		return "";
 	}
-
+	
+	public String encryptPassword(String password) {
+		if(password == null){
+			return password;
+		}
+		
+		MessageDigest algorithm;
+		try {
+			algorithm = MessageDigest.getInstance("SHA-256");
+			byte messageDigest[] = algorithm.digest(password.getBytes("UTF-8"));
+			StringBuilder hexString = new StringBuilder();
+			for (byte b : messageDigest) {
+				hexString.append(String.format("%02X", 0xFF & b));
+			}
+			
+			return hexString.toString();
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		return password;
+	}
 }

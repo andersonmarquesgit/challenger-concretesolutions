@@ -11,12 +11,16 @@ import br.com.cs.rest.exception.LoginException;
 import br.com.cs.rest.model.User;
 import br.com.cs.rest.model.to.LoginTO;
 import br.com.cs.rest.service.LoginService;
+import br.com.cs.rest.service.UserService;
 
 @Component
 public class LoginValidator implements Validator {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -31,7 +35,7 @@ public class LoginValidator implements Validator {
 		
 		if(user == null){
 			throw new LoginException("Usuário e/ou senha inválidos");
-		}else if(!user.getPassword().equals(l.getPassword())) {
+		}else if(!user.getPassword().equals(userService.encryptPassword(l.getPassword()))) {
 			throw new LoginException("Usuário e/ou senha inválidos");
 		}
 		
