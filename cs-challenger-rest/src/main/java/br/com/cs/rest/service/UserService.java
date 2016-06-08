@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +17,14 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	TokenService tokenService;
+	
 	public User save(User user) {
 		user.setCreated(new Date());
 		user.setModified(new Date());
 		user.setLastLogin(new Date());
-		user.setToken(generateTokenUUID());
+		user.setToken(tokenService.encodeToken(user));
 		user.setPassword(encryptPassword(user.getPassword()));
 		
 		return userRepository.save(user);
@@ -30,15 +32,6 @@ public class UserService {
 
 	public boolean isEmailExist(String email) {
 		return userRepository.findByEmail(email) == null ? false : true;
-	}
-	
-	public String generateTokenUUID() {
-		UUID token = UUID.randomUUID();
-		return token.toString();
-	}
-	
-	public String generateTokenJWT() {
-		return "";
 	}
 	
 	public String encryptPassword(String password) {
