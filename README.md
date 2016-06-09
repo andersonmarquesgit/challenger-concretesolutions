@@ -8,7 +8,7 @@ A API está disponível para teste em: http://andersonmarques.s156.eatj.com/cs-c
 <li>/login</li>
 </ul>
 
-OBS.: Foi mantido uma listagem no home do projeto, apenas a fim de possibilitar visualizar em JSON os usuários cadastrados. Contudo é possível acessar o banco de dados (utilizado o H2). Para acessá-lo basta adicionar "/console" a URL.
+OBS.: Foi mantido uma listagem na home do projeto, apenas para possibilitar a visualização em JSON dos usuários cadastrados. Contudo é possível acessar o banco de dados (utilizado o H2) para visualizá-los. Basta adicionar "/console" a URL (http://andersonmarques.s156.eatj.com/cs-challenger-rest-1.0/console).
 
 <ul>
 <li>Utilizado JWT na geração do Token</li>
