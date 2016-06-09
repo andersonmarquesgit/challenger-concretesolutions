@@ -1,1 +1,6 @@
-
+cs-challenger-rest/target/
+cs-challenger-rest/.settings/
+cs-challenger-rest/.project
+cs-challenger-rest/.classpath
+cs-challenger-rest/.mvn/wrapper/maven-wrapper.jar
+cs-challenger-rest/.mvn/wrapper/maven-wrapper.properties
