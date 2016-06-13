@@ -112,6 +112,9 @@
 				<version>1.0.3</version>
 				<configuration>
 					<appName>csrest</appName>
+					<processTypes>
+						<web>java -jar ./target/cs-challenger-rest-1.0.jar</web>
+					</processTypes>
 				</configuration>
 			</plugin>
 		</plugins>
