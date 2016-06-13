@@ -6,7 +6,7 @@
 	<groupId>cs-challenger-rest</groupId>
 	<artifactId>cs-challenger-rest</artifactId>
 	<version>1.0</version>
-	
+
 
 	<name>cs-challenger-rest</name>
 	<description>Challenger Concrete Solutions</description>
@@ -110,6 +110,16 @@
 				<groupId>com.heroku.sdk</groupId>
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>1.0.3</version>
+				<configuration>
+					<jdkVersion>1.8</jdkVersion>
+					<!-- Use your own application name -->
+					<appName>cs-challenger-rest</appName>
+					<processTypes>
+						<!-- Tell Heroku how to launch your application -->
+						<!-- You might have to remove the ./ in front -->
+						<web>java -jar ./target/cs-challenger-rest.jar</web>
+					</processTypes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
