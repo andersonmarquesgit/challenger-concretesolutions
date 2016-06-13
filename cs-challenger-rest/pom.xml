@@ -6,7 +6,7 @@
 	<groupId>cs-challenger-rest</groupId>
 	<artifactId>cs-challenger-rest</artifactId>
 	<version>1.0</version>
-
+	<packaging>war</packaging>
 
 	<name>cs-challenger-rest</name>
 	<description>Challenger Concrete Solutions</description>
@@ -110,12 +110,6 @@
 				<groupId>com.heroku.sdk</groupId>
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>1.0.3</version>
-				<configuration>
-					<appName>csrest</appName>
-					<processTypes>
-						<web>java -jar ./target/cs-challenger-rest-1.0.jar</web>
-					</processTypes>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
