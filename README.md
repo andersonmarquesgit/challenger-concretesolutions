@@ -1,7 +1,5 @@
 <H1>Projeto Desafio da Concrete Solutions</H1>
 
-A API está disponível para teste em: http://andersonmarques.s156.eatj.com/cs-challenger-rest-1.0
-
 <H2>Endpoints</H2>
 <ul>
 <li>/cadastro</li>
